@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05060b">
+<meta name="description" content="Descubra fatos surpreendentes sobre o universo, os planetas, as estrelas e os buracos negros, com fontes científicas.">
+<title>Cosmos Oculto | Os segredos do universo</title>
+
+<style>
+:root {
+  --bg: #05060b;
+  --card: #10121d;
+  --text: #f4f5ff;
+  --muted: #a1a5bd;
+  --accent: #8b7bff;
+  --cyan: #63e6ff;
+  --border: #24263a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: var(--cyan); }
+
+button, input { font: inherit; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(5, 6, 11, .92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  max-width: 1150px;
+  min-height: 72px;
+  margin: auto;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-links a:hover { color: white; }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 470px;
+  padding: 100px 22px 85px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 110%,
+      #34206b 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 20%,
+      #102b50 0%, transparent 35%),
+    #05060b;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white 70%, transparent),
+    radial-gradient(1px 1px at 70% 20%, white 70%, transparent),
+    radial-gradient(2px 2px at 85% 65%, #9f9bff 70%, transparent),
+    radial-gradient(1px 1px at 35% 80%, white 70%, transparent),
+    radial-gradient(1px 1px at 60% 55%, white 70%, transparent),
+    radial-gradient(2px 2px at 12% 70%, #83dfff 70%, transparent);
+  background-size: 230px 190px;
+  opacity: .7;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 6px 13px;
+  border: 1px solid #514a89;
+  border-radius: 30px;
+  color: #c1baff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 22px 0 18px;
+  font-size: clamp(36px, 6vw, 66px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #9b8cff, #63e6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 590px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.hero-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 13px 24px;
+  background: linear-gradient(100deg, #8170ff, #536bff);
+  color: white;
+  text-decoration: none;
+  border-radius: 9px;
+  font-weight: bold;
+  transition: transform .2s;
+}
+
+.hero-button:hover { transform: translateY(-3px); }
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 65px 22px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: clamp(25px, 4vw, 34px);
+  line-height: 1.2;
+}
+
+.section-heading p, .muted { color: var(--muted); }
+
+.search-box {
+  display: block;
+  width: 100%;
+  margin: 25px 0 18px;
+  padding: 14px 16px;
+  background: #0d0f18;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  color: white;
+}
+
+.search-box:focus { border-color: var(--accent); }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 30px;
+}
+
+.filter {
+  padding: 8px 14px;
+  color: #c2c5d9;
+  background: #10121d;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.filter:hover, .filter.active {
+  color: white;
+  border-color: var(--accent);
+  background: #211c42;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  overflow: hidden;
+  background: linear-gradient(145deg, #121421, #0b0d15);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  transition: transform .2s, border-color .2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #6358a8;
+}
+
+.card-art {
+  height: 150px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%,
+      #37305e 0%, #111321 45%, #090a10 75%);
+  font-size: 68px;
+}
+
+.card-body { padding: 21px; }
+
+.tag {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--cyan);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.details {
+  margin-top: 17px;
+  padding: 10px 13px;
+  border: 1px solid #35314e;
+  border-radius: 8px;
+  color: #d0caff;
+  background: #17152a;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.extra {
+  display: none;
+  margin-top: 15px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: #d2d4e4;
+}
+
+.extra.open { display: block; }
+
+.source {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.source a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.source a:hover { text-decoration: underline; }
+
+.feature {
+  margin-top: 75px;
+  padding: 35px;
+  border: 1px solid #363052;
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 100% 0%,
+      #29204c 0%, transparent 55%),
+    #0d0e17;
+}
+
+.feature p {
+  max-width: 750px;
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.feature a {
+  display: inline-block;
+  margin-top: 17px;
+  text-decoration: none;
+}
+
+footer {
+  padding: 30px 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer a { text-decoration: none; }
+
+.empty {
+  display: none;
+  color: var(--muted);
+  padding: 30px 0;
+}
+
+@media (max-width: 800px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section-heading { align-items: start; flex-direction: column; }
+}
+
+@media (max-width: 540px) {
+  nav { flex-wrap: wrap; }
+  .nav-links { gap: 13px; }
+  .nav-links a { font-size: 12px; }
+  .hero { padding: 80px 20px; min-height: 420px; }
+  main { padding: 45px 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .card-art { height: 170px; }
+  .feature { padding: 24px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="#">✦ COSMOS <span>OCULTO</span></a>
+    <div class="nav-links">
+      <a href="#descobertas">Descobertas</a>
+      <a href="#universo">O universo</a>
+      <a href="#fontes">Fontes</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="stars"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Explore o desconhecido</span>
+    <h1>O universo é mais estranho do que <span class="gradient">você imagina.</span></h1>
+    <p>
+      Fatos fascinantes sobre o espaço, explicados de forma simples
+      e acompanhados de fontes científicas para você descobrir o que
+      realmente sabemos sobre o cosmos.
+    </p>
+    <a class="hero-button" href="#descobertas">Explorar descobertas ↗</a>
+  </div>
+</section>
+
+<main>
+  <section id="descobertas">
+    <div class="section-heading">
+      <div>
+        <h2>Conhecimento além da Terra.</h2>
+        <p>Seis fatos que tornam o universo extraordinário.</p>
+      </div>
+    </div>
+
+    <input
+      id="search"
+      class="search-box"
+      type="search"
+      placeholder="🔎 Pesquise: Vênus, Lua, estrelas..."
+      aria-label="Pesquisar curiosidades"
+    >
+
+    <div class="filters" aria-label="Filtrar curiosidades">
+      <button class="filter active" data-category="todos">Todos</button>
+      <button class="filter" data-category="planetas">Planetas</button>
+      <button class="filter" data-category="estrelas">Estrelas</button>
+      <button class="filter" data-category="espaco">Espaço</button>
+      <button class="filter" data-category="lua">Lua</button>
+    </div>
+
+    <div class="grid" id="cards">
+
+      <article class="card" data-category="planetas">
+        <div class="card-art" aria-hidden="true">🪐</div>
+        <div class="card-body">
+          <span class="tag">Planetas · Vênus</span>
+          <h3>Um dia pode durar mais que um ano</h3>
+          <p>Vênus demora mais para girar sobre si mesmo do que para completar uma volta ao redor do Sol.</p>
+          <button class="details" aria-expanded="false">Descobrir por quê ↓</button>
+          <div class="extra">
+            Uma rotação sideral de Vênus dura cerca de 243 dias terrestres,
+            enquanto sua órbita ao redor do Sol leva aproximadamente
+            225 dias terrestres. O planeta também gira em sentido retrógrado.
+            <div class="source">
+              Fonte:
+              <a href="https://science.nasa.gov/venus/" target="_blank" rel="noopener noreferrer">NASA — Vênus</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="lua">
+        <div class="card-art" aria-hidden="true">🌕</div>
+        <div class="card-body">
+          <span class="tag">Lua · Movimento</span>
+          <h3>A Lua está se afastando da Terra</h3>
+          <p>Nosso satélite natural aumenta lentamente sua distância em relação ao planeta.</p>
+          <button class="details" aria-expanded="false">Descobrir por quê ↓</button>
+          <div class="extra">
+            A Lua se afasta, em média, cerca de 3,8 centímetros por ano.
+            Essa taxa foi medida, entre outras técnicas, com lasers refletidos
+            por retrorefletores deixados na Lua pelas missões Apollo.
+            <div class="source">
+              Fonte:
+              <a href="https://science.nasa.gov/moon/" target="_blank" rel="noopener noreferrer">NASA — A Lua</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="estrelas">
+        <div class="card-art" aria-hidden="true">☀️</div>
+        <div class="card-body">
+          <span class="tag">Estrelas · Luz</span>
+          <h3>O Sol que vemos é do passado</h3>
+          <p>A luz solar não chega instantaneamente à Terra: ela precisa viajar pelo espaço.</p>
+          <button class="details" aria-expanded="false">Descobrir por quê ↓</button>
+          <div class="extra">
+            A luz leva aproximadamente 8 minutos e 20 segundos para percorrer
+            a distância média entre o Sol e a Terra. Portanto, observamos o Sol
+            como ele era alguns minutos antes.
+            <div class="source">
+              Fonte:
+              <a href="https://science.nasa.gov/sun/" target="_blank" rel="noopener noreferrer">NASA — O Sol</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="planetas">
+        <div class="card-art" aria-hidden="true">🔵</div>
+        <div class="card-body">
+          <span class="tag">Planetas · Urano</span>
+          <h3>Urano gira praticamente de lado</h3>
+          <p>Seu eixo de rotação é tão inclinado que o planeta parece rolar ao redor do Sol.</p>
+          <button class="details" aria-expanded="false">Descobrir por quê ↓</button>
+          <div class="extra">
+            O eixo de Urano tem uma inclinação de aproximadamente 98 graus
+            em relação ao plano de sua órbita. Isso provoca estações extremas:
+            cada polo pode passar décadas recebendo luz solar contínua
+            ou ficando na escuridão.
+            <div class="source">
+              Fonte:
+              <a href="https://science.nasa.gov/uranus/" target="_blank" rel="noopener noreferrer">NASA — Urano</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="espaco">
+        <div class="card-art" aria-hidden="true">🌌</div>
+        <div class="card-body">
+          <span class="tag">Espaço · Vácuo</span>
+          <h3>O espaço não é totalmente vazio</h3>
+          <p>Mesmo nas regiões extremamente rarefeitas, podem existir partículas, campos e radiação.</p>
+          <button class="details" aria-expanded="false">Descobrir por quê ↓</button>
+          <div class="extra">
+            O espaço interplanetário contém partículas do vento solar,
+            poeira e campos magnéticos. Entre as galáxias também existe
+            matéria muito dispersa. Isso não significa que o espaço seja
+            cheio como o ar que respiramos: sua densidade é extremamente baixa.
+            <div class="source">
+              Fonte:
+              <a href="https://science.nasa.gov/heliophysics/" target="_blank" rel="noopener noreferrer">NASA — Heliofísica</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="espaco">
+        <div class="card-art" aria-hidden="true">🕳️</div>
+        <div class="card-body">
+          <span class="tag">Espaço · Buracos negros</span>
+          <h3>Buracos negros não sugam tudo ao redor</h3>
+          <p>De longe, a gravidade depende da massa, e não de uma força mágica de sucção.</p>
+          <button class="details" aria-expanded="false">Descobrir por quê ↓</button>
+          <div class="extra">
+            Se o Sol fosse substituído por um buraco negro com exatamente
+            a mesma massa, a Terra, idealmente, continuaria em uma órbita
+            semelhante. Mas perderíamos a luz e o calor solar.
+            Objetos precisam chegar muito perto para que os efeitos extremos
+            de um buraco negro se tornem decisivos.
+            <div class="source">
+              Fonte:
+              <a href="https://science.nasa.gov/universe/black-holes/" target="_blank" rel="noopener noreferrer">NASA — Buracos negros</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p id="empty" class="empty">Nenhuma curiosidade encontrada. Tente outra pesquisa! 🔭</p>
+  </section>
+
+  <section class="feature" id="universo">
+    <span class="eyebrow">Uma escala inimaginável</span>
+    <h2 style="margin-top:18px">Você está olhando para o passado.</h2>
+    <p>
+      Quando observamos objetos distantes, vemos a luz que saiu deles
+      há muito tempo. Por isso, telescópios poderosos como o James Webb
+      ajudam os cientistas a estudar galáxias como eram no universo jovem.
+      Olhar para longe também é olhar para trás no tempo.
+    </p>
+    <a href="https://science.nasa.gov/mission/webb/" target="_blank" rel="noopener noreferrer">
+      Conheça o telescópio James Webb ↗
+    </a>
+  </section>
+
+  <section id="fontes" style="margin-top:65px">
+    <h2>Ciência de verdade. 🔬</h2>
+    <p class="muted" style="margin-top:12px">
+      As curiosidades deste site são acompanhadas de referências para
+      você consultar os dados originais. As explicações foram resumidas
+      para facilitar a leitura; consulte as fontes para detalhes e atualizações.
+    </p>
+    <p style="margin-top:16px">
+      <a href="https://science.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA Science</a>
+      &nbsp; · &nbsp;
+      <a href="https://www.esa.int/" target="_blank" rel="noopener noreferrer">Agência Espacial Europeia (ESA)</a>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>✦ COSMOS OCULTO</p>
+  <p>Explorando o universo com curiosidade e ciência.</p>
+  <p style="margin-top:8px">Conteúdo educativo · Feito para quem olha para as estrelas.</p>
+</footer>
+
+<script>
+const search = document.getElementById("search");
+const cards = [...document.querySelectorAll(".card")];
+const filters = [...document.querySelectorAll(".filter")];
+const empty = document.getElementById("empty");
+
+let category = "todos";
+
+function updateCards() {
+  const query = search.value
+    .trim()
+    .toLocaleLowerCase("pt-BR");
+
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchesCategory =
+      category === "todos" ||
+      card.dataset.category === category;
+
+    const matchesSearch =
+      card.innerText.toLocaleLowerCase("pt-BR").includes(query);
+
+    const show = matchesCategory && matchesSearch;
+
+    card.style.display = show ? "" : "none";
+
+    if (show) visible++;
+  });
+
+  empty.style.display = visible ? "none" : "block";
+}
+
+search.addEventListener("input", updateCards);
+
+filters.forEach(button => {
+  button.addEventListener("click", () => {
+    category = button.dataset.category;
+
+    filters.forEach(item => {
+      const active = item === button;
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+
+    updateCards();
+  });
+});
+
+document.querySelectorAll(".details").forEach(button => {
+  button.addEventListener("click", () => {
+    const extra = button.nextElementSibling;
+    const open = extra.classList.toggle("open");
+
+    button.textContent = open
+      ? "Mostrar menos ↑"
+      : "Descobrir por quê ↓";
+
+    button.setAttribute("aria-expanded", String(open));
+  });
+});
+
+updateCards();
+</script>
+
+</body>
+</html>
